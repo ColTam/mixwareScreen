@@ -1,0 +1,3 @@
+{
+    "files": ["ui/BaseTabBar.qml","ui/MainPage.qml","resource/image/logo.png","ui/HomePage.qml","README.md","ui/main.qml","ui/SettingsPage.qml","ui/MixwareScreen.qml","ui/MenusPage.qml","ui/PrintPage.qml","ui/BaseButton.qml","main.py","Translation.py","ui/SplashPage.qml","ui/BaseSwitch.qml"]
+}

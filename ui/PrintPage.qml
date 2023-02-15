@@ -1,9 +1,8 @@
-import QtQuick 2.0
-import QtQuick.Controls 2.3
+
+import QtQuick 2.9
+import QtQuick.Controls 2.5
 
 Rectangle {
-    width: 400
-    height: 300
     color: "#051f58"
     radius: 8
 

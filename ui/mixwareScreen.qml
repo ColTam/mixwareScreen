@@ -1,37 +1,85 @@
-import QtQuick 2.9
-import QtQuick.Window 2.2
 
-Window {
+import QtQuick 2.9
+import QtQuick.Window 2.3
+import QtQuick.Controls 2.5
+//import QtQuick.Controls.Material 2.3
+
+import Qt.labs.settings
+
+ApplicationWindow {
+    id: window
     visible: true
     width: 320
     height: 540
-    title: qsTr("Hello World")
-    flags: Qt.FramelessWindowHint
 
-    // 1. Loader加载不同组件，实现切换页面的功能
-    Loader{
-        id:myLoader
-        anchors.centerIn: parent // 弹出的界面都居中显示
+    minimumWidth: 240
+    minimumHeight: 320
+    title: qsTr("Mixware Screen")
+//    flags: Qt.FramelessWindowHint
+//    Material.theme: winset.theme
+
+    Settings {
+        id: winset
+        fileName: "./MixwareScreen.conf"
+
+        category: "window"
+        property alias x: window.x
+        property alias y: window.y
+        property alias width: window.width
+        property alias height: window.height
+//        property int theme: Material.Light
     }
-    Component.onCompleted: myLoader.sourceComponent = mainPage // 一开始显示登录页面
 
-    // 2. 登录页面-Component
-    Component{
-        id:printPage
-        PrintPage {
-            width: 300
-            height: 200
-            anchors.centerIn: parent
+    header: Rectangle {
+        id: mainHeader
+        height: headerTitle.height
+
+        anchors.topMargin: 2
+        anchors.bottomMargin: 2
+
+        Label {
+            id: headerTitle
+            text: qsTr("        Mixware Screen")
+            width: parent.width - headerTime.width
+
+            horizontalAlignment: Text.AlignHCenter
+        }
+
+        Label {
+            id: headerTime
+            text: Qt.formatDateTime(new Date(), "hh:mm")
+
+            anchors.right: parent.right
+            anchors.rightMargin: 6
+            Timer {
+                interval: 1000
+                running: true
+                repeat: true
+                onTriggered: headerTime.text = Qt.formatDateTime(new Date(), "hh:mm")
+            }
         }
     }
 
-    // 3.主页面-Component
-    Component{
-        id:mainPage
-        MainPage {
-            width: 500
-            height: 350
-            anchors.centerIn: parent
+    footer: BaseTabBar {
+        id: mainFooter
+        height: 48
+        width: parent.width
+    }
+
+    StackView {
+        id: stack
+        width: parent.width
+        anchors.top: mainHeader.bottom
+        anchors.bottom: mainFooter.top
+
+        initialItem: SplashPage {
+            id: splash
+            width: stack.width
+            height: stack.height
         }
+    }
+
+    Component.onCompleted: {
+//        window.visibility = Window.Maximized
     }
 }
