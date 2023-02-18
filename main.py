@@ -40,9 +40,9 @@ class Translation(QtCore.QObject):
 
 if __name__ == '__main__':
     app = QGuiApplication(sys.argv)
-    app.setOrganizationName("Mixware")
-    app.setOrganizationDomain("www.mixwarebot.com")
-    app.setApplicationName("MixwareScreen")
+#    app.setOrganizationName("Mixware")
+#    app.setOrganizationDomain("www.mixwarebot.com")
+#    app.setApplicationName("MixwareScreen")
 
     ts = Translation(app)
     ts.languageChanged.connect(QQmlApplicationEngine().retranslate)

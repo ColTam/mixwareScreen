@@ -7,12 +7,14 @@ Rectangle {
     width: parent.width
     height: parent.height
 
-    Rectangle {
-        width: parent.width/3
+    BaseTabButton {
+        id: returnTabButton
+//        enabled: false
+        width: parent.width / 3
         height: parent.height
         anchors.left: parent.left
-        Label {
-            text: qsTr("返回")
+        BaseLabel {
+            text: qsTr("Return")
             anchors.centerIn: parent
         }
         MouseArea {
@@ -22,20 +24,15 @@ Rectangle {
                     stack.pop()
             }
         }
-        Rectangle {
-            width: parent.width
-            height: 2
-            radius: 4
-            color: "#FF5A00"
-            anchors.bottom: parent.bottom
-        }
     }
-    Rectangle {
+    BaseTabButton {
+        id: homeTabButton
+        //        enabled: false
         width: parent.width/3
         height: parent.height
         anchors.centerIn: parent
-        Label {
-            text: qsTr("主页")
+        BaseLabel {
+            text: qsTr("Start")
             anchors.centerIn: parent
         }
         MouseArea {
@@ -45,20 +42,15 @@ Rectangle {
                     stack.pop(null)
             }
         }
-        Rectangle {
-            width: parent.width
-            height: 2
-            radius: 4
-            color: "#FF5A00"
-            anchors.bottom: parent.bottom
-        }
     }
-    Rectangle {
+    BaseTabButton {
+        id: restartTabButton
+        enabled: false
         width: parent.width/3
         height: parent.height
         anchors.right: parent.right
-        Label {
-            text: qsTr("重启")
+        BaseLabel {
+            text: qsTr("Stop")
             anchors.centerIn: parent
         }
         MouseArea {
@@ -66,13 +58,6 @@ Rectangle {
             onClicked: {
                 console.log("重启，待实现")
             }
-        }
-        Rectangle {
-            width: parent.width
-            height: 2
-            radius: 4
-            color: "#FF5A00"
-            anchors.bottom: parent.bottom
         }
     }
 }

@@ -1,30 +1,37 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.5
-import QtQuick.Controls.Material 2.3
 
 Button {
     id: control
     flat: true
     text: qsTr("Button")
 
-    Material.theme: Material.Light
+    property color backColor : winconf.background
+    property color textColor : winconf.foreground
+    property color backDownColor : backColor.darker()
+    property color textDownColor : textColor.lighter()
+    property bool bottomLine: false
+    property bool leftLine: false
+
     contentItem: Text {
         text: control.text
         font: control.font
         opacity: enabled ? 1.0 : 0.3
-        color: control.down ? "#17a81a" : "#21be2b"
+        color: control.down ? textDownColor : textColor
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
         elide: Text.ElideRight
     }
 
     background: Rectangle {
+        anchors.fill: parent
         opacity: enabled ? 1 : 0.3
-        color: control.down ? "#ff5a00" : control.hovered ? "#ffaa55" : "red"
-        radius: 5
+        color: control.down ? backDownColor : backColor
+        radius: 10
 
         Rectangle {
-            height: parent.radius * 2
+            visible: bottomLine
+            height: radius * 3
             width: parent.width
             color: parent.color.darker()
             radius: parent.radius
@@ -33,11 +40,22 @@ Button {
         }
 
         Rectangle {
-            y: parent.height - parent.radius * 3
-            height: parent.radius * 2
+            visible: bottomLine
+            y: parent.height - height * 1.2
+            height: radius * 2
             width: parent.width
             color: parent.color
-            radius: parent.radius
+            radius: parent.radius * 1.5
+        }
+
+        Rectangle {
+            visible: leftLine
+            width: parent.radius
+            height: parent.height
+            color: parent.color.darker()
+            radius: 0
+
+            anchors.left: parent.left
         }
     }
 

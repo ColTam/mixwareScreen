@@ -2,9 +2,10 @@
 import QtQuick 2.9
 import QtQuick.Window 2.3
 import QtQuick.Controls 2.5
-//import QtQuick.Controls.Material 2.3
+//import QtGraphicalEffects 1.15
 
 import Qt.labs.settings
+
 
 Page {
     id: splashPage
@@ -16,80 +17,77 @@ Page {
 
         width: parent.width
         height: parent.height-mainBottom.height
-        color: "red"
-        Label {
-            text: "Mixware Screen"
 
+        color: winconf.background
+        Rectangle {
+            width: parent.width / 2
+            height: parent.height
             anchors.centerIn: parent
+            color: parent.color
+            Image {
+                id: img
+                width: parent.width; height: 96
+                y: (parent.height - height) / 2
+                source: "../resource/image/Mixware.svg"
+                horizontalAlignment: Text.AlignHCenter
+
+                fillMode: Image.PreserveAspectFit
+//                color: "##FF5A00"
+//                ColorOverlay {
+
+//                }
+            }
+
+            BaseLabel {
+                id: lbl
+                text: "Mixware Screen"
+                width: parent.width
+
+                anchors.top: img.bottom
+                horizontalAlignment: Text.AlignHCenter
+            }
         }
+
     }
 
     Rectangle {
         id: mainBottom
+
+        anchors.bottom: parent.bottom
+        color: winconf.background
         height: 42
         width: parent.width
 
-        anchors.bottom: parent.bottom
-        Button {
+        BaseButton {
             id: rbtn
-            text: qsTr("Return1")
+            text: qsTr("Reboot")
 
             anchors.left: parent.left
             width: parent.width/3
             height: parent.height
-            flat: settings.btnf
-
-            Settings {
-                id: settings
-                fileName: "./MixwareScreen.conf"
-
-                property bool btnf: true
-            }
-
-            onClicked: flat ^= true
-
-            onFlatChanged: settings.btnf = flat
+            onClicked: console.log("Restart Klipper$Not$")
         }
-        Button {
+        BaseButton {
             id: tbtn
-            text: qsTr("Return2")
+            text: qsTr("Shutdown")
 
             anchors.left: rbtn.right
             anchors.right: tsbtn.left
             width: parent.width/3
             height: parent.height
             onClicked: {
-//                if (winset.theme == Material.Light) {
-//                    winset.theme = Material.Dark
-
-//                    mainFooter.tabBarModel.setProperty(0, "currentModelColor", Material.color(Material.Purple, Material.Shade200).toString())
-//                    mainFooter.tabBarModel.setProperty(1, "currentModelColor", Material.color(Material.Purple, Material.Shade200).toString())
-//                    mainFooter.tabBarModel.setProperty(2, "currentModelColor", Material.color(Material.Purple, Material.Shade200).toString())
-//                    mainFooter.tabBarModel.setProperty(0, "modelColor", Material.color(Material.Teal, Material.Shade200).toString())
-//                    mainFooter.tabBarModel.setProperty(1, "modelColor", Material.color(Material.Teal, Material.Shade200).toString())
-//                    mainFooter.tabBarModel.setProperty(2, "modelColor", Material.color(Material.Teal, Material.Shade200).toString())
-//                }
-//                else {
-//                    winset.theme = Material.Light
-
-//                    mainFooter.tabBarModel.setProperty(0, "modelColor", Material.color(Material.Teal, Material.ShadeA700).toString())
-//                    mainFooter.tabBarModel.setProperty(1, "modelColor", Material.color(Material.Teal, Material.ShadeA700).toString())
-//                    mainFooter.tabBarModel.setProperty(2, "modelColor", Material.color(Material.Teal, Material.ShadeA700).toString())
-//                    mainFooter.tabBarModel.setProperty(0, "currentModelColor", Material.color(Material.Purple, Material.ShadeA700).toString())
-//                    mainFooter.tabBarModel.setProperty(1, "currentModelColor", Material.color(Material.Purple, Material.ShadeA700).toString())
-//                    mainFooter.tabBarModel.setProperty(2, "currentModelColor", Material.color(Material.Purple, Material.ShadeA700).toString())
-//                }
+                console.log("Restart Firmware$Not$")
             }
         }
-        Button {
+        BaseButton {
             id: tsbtn
-            text: qsTr("菜单")
+            text: qsTr("Menus")
             anchors.right: parent.right
             width: parent.width/3
             height: parent.height
 
             onClicked: {
-                translator.select_language("cn")
+//                translator.select_language("cn")
                 page1.visible = true;
                 page1.stack = stack;
                 stack.push(page1)
@@ -97,7 +95,7 @@ Page {
         }
     }
 
-    MenusPage {
+    SplashMenusPage {
         id: page1
         width: splashPage.width
         height: splashPage.height

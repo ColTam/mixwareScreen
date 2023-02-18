@@ -1,8 +1,6 @@
-
 import QtQuick 2.9
 import QtQuick.Window 2.3
 import QtQuick.Controls 2.5
-//import QtQuick.Controls.Material 2.3
 
 import Qt.labs.settings
 
@@ -16,7 +14,6 @@ ApplicationWindow {
     minimumHeight: 320
     title: qsTr("Mixware Screen")
 //    flags: Qt.FramelessWindowHint
-//    Material.theme: winset.theme
 
     Settings {
         id: winset
@@ -27,7 +24,10 @@ ApplicationWindow {
         property alias y: window.y
         property alias width: window.width
         property alias height: window.height
-//        property int theme: Material.Light
+    }
+
+    ScreenConfig {
+        id: winconf
     }
 
     header: Rectangle {
@@ -35,9 +35,10 @@ ApplicationWindow {
         height: headerTitle.height
 
         anchors.topMargin: 2
-        anchors.bottomMargin: 2
+        anchors.bottomMargin: 3
 
-        Label {
+        color: winconf.background
+        BaseLabel {
             id: headerTitle
             text: qsTr("        Mixware Screen")
             width: parent.width - headerTime.width
@@ -45,7 +46,7 @@ ApplicationWindow {
             horizontalAlignment: Text.AlignHCenter
         }
 
-        Label {
+        BaseLabel {
             id: headerTime
             text: Qt.formatDateTime(new Date(), "hh:mm")
 

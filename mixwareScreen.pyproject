@@ -1,3 +1,3 @@
 {
-    "files": ["ui/BaseTabBar.qml","ui/MainPage.qml","resource/image/logo.png","ui/HomePage.qml","README.md","ui/main.qml","ui/SettingsPage.qml","ui/MixwareScreen.qml","ui/MenusPage.qml","ui/PrintPage.qml","ui/BaseButton.qml","main.py","Translation.py","ui/SplashPage.qml","ui/BaseSwitch.qml"]
+    "files": ["resource/image/logo.png","ui/BaseLabel.qml","ui/main.qml","ui/BaseTabBar.qml","main.py","ui/BaseTabButton.qml","ui/BaseButton.qml","Translation.py","ui/MixwareScreen.qml","ui/BaseSwitch.qml","ui/BaseSettingsItem.qml","ui/SplashPage.qml","ui/SplashMenusPage.qml","README.md","ui/HomePage.qml","ui/ScreenConfig.qml","ui/PrintPage.qml","ui/MainPage.qml","ui/SettingsPage.qml","ui/BaseComboBox.qml"]
 }

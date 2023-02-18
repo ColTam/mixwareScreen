@@ -2,7 +2,6 @@
 import QtQuick 2.9
 import QtQuick.Window 2.3
 import QtQuick.Controls 2.5
-//import QtQuick.Controls.Material 2.3
 
 import Qt.labs.settings
 
@@ -26,7 +25,7 @@ ApplicationWindow {
         property alias height: homePage.height
 //        property int theme: Material.Light
     }
-    Label {
+    BaseLabel {
         text: "121321313132131313"
     }
 
