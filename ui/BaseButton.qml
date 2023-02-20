@@ -24,6 +24,7 @@ Button {
     }
 
     background: Rectangle {
+        id: btnBack
         anchors.fill: parent
         opacity: enabled ? 1 : 0.3
         color: control.down ? backDownColor : backColor
@@ -41,7 +42,7 @@ Button {
 
         Rectangle {
             visible: bottomLine
-            y: parent.height - height * 1.2
+            y: parent.height - height * 1.3
             height: radius * 2
             width: parent.width
             color: parent.color
@@ -58,5 +59,7 @@ Button {
             anchors.left: parent.left
         }
     }
+    onLeftLineChanged: {btnBack.radius = 10}
+    onBottomLineChanged: {btnBack.radius = 5}
 
 }

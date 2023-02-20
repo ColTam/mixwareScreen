@@ -1,9 +1,10 @@
 import sys
+import logging
 
 from PySide6 import QtCore
 from PySide6.QtCore import QTranslator
 from PySide6.QtQml import QQmlApplicationEngine
-from PySide6.QtGui import QGuiApplication
+from PySide6.QtGui import QGuiApplication, QIcon
 
 
 class Translation(QtCore.QObject):
@@ -40,6 +41,7 @@ class Translation(QtCore.QObject):
 
 if __name__ == '__main__':
     app = QGuiApplication(sys.argv)
+    app.setWindowIcon(QIcon("resource/image/mixware.svg"))
 #    app.setOrganizationName("Mixware")
 #    app.setOrganizationDomain("www.mixwarebot.com")
 #    app.setApplicationName("MixwareScreen")
