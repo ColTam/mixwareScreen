@@ -1,3 +1,5 @@
+import configparser
+import os.path
 import sys
 import logging
 
@@ -5,6 +7,8 @@ from PySide6 import QtCore
 from PySide6.QtCore import QTranslator
 from PySide6.QtQml import QQmlApplicationEngine
 from PySide6.QtGui import QGuiApplication, QIcon
+
+from config import MixwareScreenConfig
 
 
 class Translation(QtCore.QObject):
@@ -41,16 +45,19 @@ class Translation(QtCore.QObject):
 
 if __name__ == '__main__':
     app = QGuiApplication(sys.argv)
-    app.setWindowIcon(QIcon("resource/image/mixware.svg"))
-#    app.setOrganizationName("Mixware")
-#    app.setOrganizationDomain("www.mixwarebot.com")
-#    app.setApplicationName("MixwareScreen")
+    app.setWindowIcon(QIcon("./resource/image/Mixware.svg"))
+    app.setOrganizationName("Mixware")
+    app.setOrganizationDomain("www.mixwarebot.com")
+    app.setApplicationName("MixwareScreen")
+    _config = MixwareScreenConfig()
 
+    print(_config.get_valus('language'))
     ts = Translation(app)
     ts.languageChanged.connect(QQmlApplicationEngine().retranslate)
 
     engine = QQmlApplicationEngine()
     engine.rootContext().setContextProperty("translator", ts)
+    engine.rootContext().setContextProperty("screenConfig", _config)
     engine.quit.connect(app.quit)
     engine.load('ui/MixwareScreen.qml')
 

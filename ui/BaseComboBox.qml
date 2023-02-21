@@ -5,6 +5,10 @@ ComboBox {
     id: control
     model: ["First", "Second", "Third"]
 
+    spacing: 5
+    leftPadding: 5
+    rightPadding: 5
+
     delegate: ItemDelegate {
         width: control.width
         contentItem: Text {

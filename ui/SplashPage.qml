@@ -65,7 +65,9 @@ Page {
             anchors.left: parent.left
             width: parent.width/3
             height: parent.height
-            onClicked: console.log("Restart Klipper$Not$")
+            onClicked: {
+                console.log("Restart Klipper$Not$")
+            }
         }
         BaseButton {
             id: tbtn

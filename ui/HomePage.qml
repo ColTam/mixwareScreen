@@ -16,7 +16,7 @@ ApplicationWindow {
 
     Settings {
         id: winset
-        fileName: "./MixwareScreen.conf"
+        fileName: "../MixwareScreen.conf"
 
         category: "window"
         property alias x: homePage.x

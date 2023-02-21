@@ -29,68 +29,121 @@ Rectangle {
 
             BaseSettingsItem {
                 width: settingPageScrollView.availableWidth - parent.spacing * 2
-//                color: winconf.buttonColor2
-//                border.color: winconf.buttonColor3
-                settingsItemText: qsTr("Item1")
+                settingsItemText: qsTr("Auto-close notifications")
 
                 BaseSwitch {
-                    id: testSwitch
+                    id: autoCloseSwitch
                     x: parent.width-width
                     y: (parent.height-height)/2
-
-                    checked: set.check
+                    checked: set.autoCloseEnabled
                 }
             }
             BaseSettingsItem {
                 width: settingPageScrollView.availableWidth - parent.spacing * 2
-//                color: winconf.buttonColor2
-//                border.color: winconf.buttonColor3
-                settingsItemText: qsTr("Item2")
+                settingsItemText: qsTr("Show Heater Power")
+
+                BaseSwitch {
+                    id: heaterPowerSwitch
+                    x: parent.width-width
+                    y: (parent.height-height)/2
+                    checked: set.heaterPowerEnabled
+                }
+            }
+            BaseSettingsItem {
+                width: settingPageScrollView.availableWidth - parent.spacing * 2
+                settingsItemText: qsTr("Theme")
 
                 BaseComboBox {
-                    id: testSwitch2
-                    spacing: 5
-                    rightPadding: 5
+                    id: themeComboBox
                     x: parent.width-width-10
                     y: (parent.height-height)/2
-
-
-                    model: ["en", "zh_CN", "俄语", "1122334455667789", "mixware", "科栋", "666"]
-                    currentIndex : set.comboIndex
-//                    onActivated: {set.comboIndex = currentIndex}
-//                    Component.onCompleted: currentIndex = set.comboIndex
-
-//                    checked: set.check2
+                    model: ["default", "light", "dark"]
+                    currentIndex : set.theme
                 }
             }
-            BaseButton {
-                id: settingBtn2
-                x: 5
-
-                text: qsTr("Settings2")
+            BaseSettingsItem {
                 width: settingPageScrollView.availableWidth - parent.spacing * 2
-                height: 64
+                settingsItemText: qsTr("time")
 
-                backColor : winconf.buttonColor3
-
-                leftLine: true
-                onClicked: {
-                    debugLog("Settings2")
+                BaseComboBox {
+                    id: timeComboBox
+                    x: parent.width-width-10
+                    y: (parent.height-height)/2
+                    model: ["auto", "file", "size", "line"]
+                    currentIndex : set.time
                 }
             }
-            BaseButton {
-                id: settingBtn3
-                x: 5
-
-                text: qsTr("Settings3")
+            BaseSettingsItem {
                 width: settingPageScrollView.availableWidth - parent.spacing * 2
-                height: 64
+                settingsItemText: qsTr("24 Hours")
 
-                backColor : winconf.buttonColor3
+                BaseSwitch {
+                    id: hoursSwitch
+                    x: parent.width-width
+                    y: (parent.height-height)/2
+                    checked: set.hoursSwitchEnabled
+                }
+            }
+            BaseSettingsItem {
+                width: settingPageScrollView.availableWidth - parent.spacing * 2
+                settingsItemText: qsTr("Display Close Time")
 
-                leftLine: true
-                onClicked: {
-                    debugLog("Settings3")
+                BaseComboBox {
+                    id: closeDisplayComboBox
+                    x: parent.width-width-10
+                    y: (parent.height-height)/2
+                    model: ["auto", "file", "size", "line"]
+                    currentIndex : set.closeDisplay
+                }
+            }
+            BaseSettingsItem {
+                width: settingPageScrollView.availableWidth - parent.spacing * 2
+                settingsItemText: qsTr("Font Size")
+
+                BaseComboBox {
+                    id: fontSizeComboBox
+                    x: parent.width-width-10
+                    y: (parent.height-height)/2
+                    model: ["auto", "file", "size", "line"]
+                    currentIndex : set.fontSize
+                }
+            }
+            BaseSettingsItem {
+                width: settingPageScrollView.availableWidth - parent.spacing * 2
+                settingsItemText: qsTr("DMPS")
+
+                BaseSwitch {
+                    id: dmpsSwitch
+                    x: parent.width-width
+                    y: (parent.height-height)/2
+                    checked: set.dmpsSwitchEnabled
+                }
+            }
+            BaseSettingsItem {
+                width: settingPageScrollView.availableWidth - parent.spacing * 2
+                settingsItemText: qsTr("Stop")
+
+                BaseSwitch {
+                    id: stopSwitch
+                    x: parent.width-width
+                    y: (parent.height-height)/2
+                    checked: set.stopSwitchEnabled
+                }
+            }
+            BaseSettingsItem {
+                width: settingPageScrollView.availableWidth - parent.spacing * 2
+                settingsItemText: qsTr("Language")
+
+                BaseComboBox {
+                    id: languageComboBox
+                    x: parent.width-width-10
+                    y: (parent.height-height)/2
+                    model: ["auto", "en", "cn", "fr", "jp"]
+                    currentIndex : set.language
+//                    onCurrentIndexChanged: winconf.lang = currentIndex
+                    onCurrentIndexChanged: {
+                        set.language = currentIndex // save
+                    }
                 }
             }
         }
@@ -100,8 +153,17 @@ Rectangle {
         id: set
         fileName: "./MixwareScreen.conf"
 
-        property bool check: testSwitch.checked
-        property int comboIndex: testSwitch2.currentIndex
+        category: "set"
+        property bool autoCloseEnabled: autoCloseSwitch.checked
+        property bool heaterPowerEnabled: heaterPowerSwitch.checked
+        property bool hoursSwitchEnabled: hoursSwitch.checked
+        property bool dmpsSwitchEnabled: dmpsSwitch.checked
+        property bool stopSwitchEnabled: stopSwitch.checked
+        property int theme: themeComboBox.currentIndex
+        property int time: timeComboBox.currentIndex
+        property int closeDisplay: closeDisplayComboBox.currentIndex
+        property int fontSize: fontSizeComboBox.currentIndex
+        property int language : screenConfig.get_valus('language') // read
     }
 
     function debugLog(str) {
