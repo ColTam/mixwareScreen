@@ -8,9 +8,7 @@ Rectangle {
 
     x: 5
     radius: 10
-    color: winconf.background
-//    border.width: 3
-//    border.color: "black"
+    color: msStyle.background
     width: 240
     height: 64
 

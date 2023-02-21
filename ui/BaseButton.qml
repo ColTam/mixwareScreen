@@ -6,8 +6,8 @@ Button {
     flat: true
     text: qsTr("Button")
 
-    property color backColor : winconf.background
-    property color textColor : winconf.foreground
+    property color backColor : msStyle.background
+    property color textColor : msStyle.foreground
     property color backDownColor : backColor.darker()
     property color textDownColor : textColor.lighter()
     property bool bottomLine: false

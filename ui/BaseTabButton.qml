@@ -9,17 +9,17 @@ Button {
     opacity: enabled ? 1 : 0.5
 
     contentItem: Text {
-        color: winconf.foreground
+        color: style.foreground
     }
 
     background: Rectangle {
-        color: winconf.background
+        color: msStyle.background
     }
 
     Rectangle {
         width: parent.width
         height: 3
-        color: winconf.accent
+        color: msStyle.accent
         anchors.top: parent.top
     }
 }

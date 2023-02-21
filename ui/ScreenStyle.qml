@@ -3,7 +3,7 @@ import Qt.labs.settings
 
 Settings {
     id: style
-    fileName: "./resource/style.conf"
+    fileName: "./resource/style.config"
 
     category: "style"
     property color foreground : "#707070"

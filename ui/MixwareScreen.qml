@@ -27,7 +27,11 @@ ApplicationWindow {
     }
 
     ScreenConfig {
-        id: winconf
+        id: msSettings
+    }
+
+    ScreenStyle {
+        id: msStyle
     }
 
     header: Rectangle {
@@ -37,7 +41,7 @@ ApplicationWindow {
         anchors.topMargin: 2
         anchors.bottomMargin: 3
 
-        color: winconf.background
+        color: msStyle.background
         BaseLabel {
             id: headerTitle
             text: qsTr("        Mixware Screen")
@@ -82,5 +86,6 @@ ApplicationWindow {
 
     Component.onCompleted: {
 //        window.visibility = Window.Maximized
+        screenLogger.info("Mixware Scrren Start")
     }
 }

@@ -57,7 +57,7 @@ ComboBox {
     }
 
     background: Rectangle {
-        implicitWidth: 40
+        implicitWidth: 64
         implicitHeight: 40
         border.color: control.pressed ? "#17a81a" : "#21be2b"
         border.width: control.visualFocus ? 2 : 1

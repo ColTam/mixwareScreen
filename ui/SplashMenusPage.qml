@@ -9,7 +9,7 @@ Rectangle {
     visible: false
     width: parent.width
     height: parent.height
-    color: winconf.background
+    color: msStyle.background
 
     property StackView stack: null
 
@@ -40,7 +40,7 @@ Rectangle {
             text: qsTr("Wifi")
             width: menusPageView.buttonWidth
             height: menusPageView.buttonHeight
-            backColor : winconf.buttonColor1
+            backColor : msStyle.buttonColor1
             bottomLine: true
             onClicked: console.log("Wifi Screen$Not$")
         }
@@ -48,7 +48,7 @@ Rectangle {
             text: qsTr("System")
             width: menusPageView.buttonWidth
             height: menusPageView.buttonHeight
-            backColor : winconf.buttonColor2
+            backColor : msStyle.buttonColor2
             bottomLine: true
             onClicked: console.log("System Screen$Not$")
         }
@@ -58,9 +58,10 @@ Rectangle {
             width: menusPageView.buttonWidth
             height: menusPageView.buttonHeight
 
-            backColor : winconf.buttonColor3
+            backColor : msStyle.buttonColor3
 
             onClicked: {
+                screenLogger.info("debug")
                 page2.visible = true;
                 page2.stack = stack;
                 stack.push(page2)

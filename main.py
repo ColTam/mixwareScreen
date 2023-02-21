@@ -4,11 +4,12 @@ import sys
 import logging
 
 from PySide6 import QtCore
-from PySide6.QtCore import QTranslator
+from PySide6.QtCore import QTranslator, qInstallMessageHandler
 from PySide6.QtQml import QQmlApplicationEngine
 from PySide6.QtGui import QGuiApplication, QIcon
 
-from config import MixwareScreenConfig
+from MixwareScreenConfig import MixwareScreenConfig
+from MixwareScreenLogger import MixwareScreenLogger
 
 
 class Translation(QtCore.QObject):
@@ -46,18 +47,23 @@ class Translation(QtCore.QObject):
 if __name__ == '__main__':
     app = QGuiApplication(sys.argv)
     app.setWindowIcon(QIcon("./resource/image/Mixware.svg"))
-    app.setOrganizationName("Mixware")
-    app.setOrganizationDomain("www.mixwarebot.com")
-    app.setApplicationName("MixwareScreen")
-    _config = MixwareScreenConfig()
+#    app.setOrganizationName("Mixware")
+#    app.setOrganizationDomain("www.mixwarebot.com")
+#    app.setApplicationName("MixwareScreen")
+    ms_config = MixwareScreenConfig()
+    ms_logger = MixwareScreenLogger()
+    ms_logger.log_file = "./MixwareScreen.log"
+    ms_logger.software_version = "1.0"
+    ms_logger.setup_logging()
 
-    print(_config.get_valus('language'))
     ts = Translation(app)
     ts.languageChanged.connect(QQmlApplicationEngine().retranslate)
 
     engine = QQmlApplicationEngine()
     engine.rootContext().setContextProperty("translator", ts)
-    engine.rootContext().setContextProperty("screenConfig", _config)
+    engine.rootContext().setContextProperty("screenConfig", ms_config)
+    engine.rootContext().setContextProperty("screenLogger", ms_logger)
+    engine.rootContext().setContextProperty("logging", logging)
     engine.quit.connect(app.quit)
     engine.load('ui/MixwareScreen.qml')
 

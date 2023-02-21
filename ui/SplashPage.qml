@@ -18,7 +18,7 @@ Page {
         width: parent.width
         height: parent.height-mainBottom.height
 
-        color: winconf.background
+        color: msStyle.background
         Rectangle {
             width: parent.width / 2
             height: parent.height
@@ -54,7 +54,7 @@ Page {
         id: mainBottom
 
         anchors.bottom: parent.bottom
-        color: winconf.background
+        color: msStyle.background
         height: 42
         width: parent.width
 
@@ -67,6 +67,7 @@ Page {
             height: parent.height
             onClicked: {
                 console.log("Restart Klipper$Not$")
+                screenLogger.reboot()
             }
         }
         BaseButton {

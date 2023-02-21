@@ -6,5 +6,5 @@ Label {
 
     font.pixelSize: 12
     font.italic: false
-    color: winconf.foreground
+    color: style.foreground
 }

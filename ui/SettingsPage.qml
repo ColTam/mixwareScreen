@@ -12,7 +12,7 @@ Rectangle {
     width: parent.width
     height: parent.height
 
-    color: winconf.background
+    color: msStyle.background
 
     property StackView stack: null
 
@@ -35,7 +35,10 @@ Rectangle {
                     id: autoCloseSwitch
                     x: parent.width-width
                     y: (parent.height-height)/2
-                    checked: set.autoCloseEnabled
+                    checked: msSettings.autoCloseEnabled
+                    onCheckedChanged: {
+                        msSettings.autoCloseEnabled = checked
+                    }
                 }
             }
             BaseSettingsItem {
@@ -46,7 +49,10 @@ Rectangle {
                     id: heaterPowerSwitch
                     x: parent.width-width
                     y: (parent.height-height)/2
-                    checked: set.heaterPowerEnabled
+                    checked: msSettings.heaterPowerEnabled
+                    onCheckedChanged: {
+                        msSettings.heaterPowerEnabled = checked
+                    }
                 }
             }
             BaseSettingsItem {
@@ -58,7 +64,10 @@ Rectangle {
                     x: parent.width-width-10
                     y: (parent.height-height)/2
                     model: ["default", "light", "dark"]
-                    currentIndex : set.theme
+                    currentIndex : msSettings.theme
+                    onCurrentIndexChanged: {
+                        msSettings.theme = currentIndex // save
+                    }
                 }
             }
             BaseSettingsItem {
@@ -70,7 +79,10 @@ Rectangle {
                     x: parent.width-width-10
                     y: (parent.height-height)/2
                     model: ["auto", "file", "size", "line"]
-                    currentIndex : set.time
+                    currentIndex : msSettings.time
+                    onCurrentIndexChanged: {
+                        msSettings.time = currentIndex // save
+                    }
                 }
             }
             BaseSettingsItem {
@@ -81,7 +93,10 @@ Rectangle {
                     id: hoursSwitch
                     x: parent.width-width
                     y: (parent.height-height)/2
-                    checked: set.hoursSwitchEnabled
+                    checked: msSettings.hoursSwitchEnabled
+                    onCheckedChanged: {
+                        msSettings.hoursSwitchEnabled = checked
+                    }
                 }
             }
             BaseSettingsItem {
@@ -93,7 +108,10 @@ Rectangle {
                     x: parent.width-width-10
                     y: (parent.height-height)/2
                     model: ["auto", "file", "size", "line"]
-                    currentIndex : set.closeDisplay
+                    currentIndex : msSettings.closeDisplay
+                    onCurrentIndexChanged: {
+                        msSettings.closeDisplay = currentIndex // save
+                    }
                 }
             }
             BaseSettingsItem {
@@ -105,7 +123,10 @@ Rectangle {
                     x: parent.width-width-10
                     y: (parent.height-height)/2
                     model: ["auto", "file", "size", "line"]
-                    currentIndex : set.fontSize
+                    currentIndex : msSettings.fontSize
+                    onCurrentIndexChanged: {
+                        msSettings.fontSize = currentIndex // save
+                    }
                 }
             }
             BaseSettingsItem {
@@ -116,7 +137,10 @@ Rectangle {
                     id: dmpsSwitch
                     x: parent.width-width
                     y: (parent.height-height)/2
-                    checked: set.dmpsSwitchEnabled
+                    checked: msSettings.dmpsSwitchEnabled
+                    onCheckedChanged: {
+                        msSettings.dmpsSwitchEnabled = checked
+                    }
                 }
             }
             BaseSettingsItem {
@@ -127,7 +151,10 @@ Rectangle {
                     id: stopSwitch
                     x: parent.width-width
                     y: (parent.height-height)/2
-                    checked: set.stopSwitchEnabled
+                    checked: msSettings.stopSwitchEnabled
+                    onCheckedChanged: {
+                        msSettings.stopSwitchEnabled = checked
+                    }
                 }
             }
             BaseSettingsItem {
@@ -139,34 +166,12 @@ Rectangle {
                     x: parent.width-width-10
                     y: (parent.height-height)/2
                     model: ["auto", "en", "cn", "fr", "jp"]
-                    currentIndex : set.language
-//                    onCurrentIndexChanged: winconf.lang = currentIndex
+                    currentIndex : msSettings.language
                     onCurrentIndexChanged: {
-                        set.language = currentIndex // save
+                        msSettings.language = currentIndex // save
                     }
                 }
             }
         }
-    }
-
-    Settings {
-        id: set
-        fileName: "./MixwareScreen.conf"
-
-        category: "set"
-        property bool autoCloseEnabled: autoCloseSwitch.checked
-        property bool heaterPowerEnabled: heaterPowerSwitch.checked
-        property bool hoursSwitchEnabled: hoursSwitch.checked
-        property bool dmpsSwitchEnabled: dmpsSwitch.checked
-        property bool stopSwitchEnabled: stopSwitch.checked
-        property int theme: themeComboBox.currentIndex
-        property int time: timeComboBox.currentIndex
-        property int closeDisplay: closeDisplayComboBox.currentIndex
-        property int fontSize: fontSizeComboBox.currentIndex
-        property int language : screenConfig.get_valus('language') // read
-    }
-
-    function debugLog(str) {
-        console.log(str)
     }
 }
