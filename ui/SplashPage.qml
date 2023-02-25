@@ -1,106 +1,73 @@
-
 import QtQuick 2.9
 import QtQuick.Window 2.3
 import QtQuick.Controls 2.5
-//import QtGraphicalEffects 1.15
 
 import Qt.labs.settings
 
-
-Page {
+Rectangle {
     id: splashPage
+    visible: false
     width: parent.width
     height: parent.height
 
-    Rectangle {
-        id: testrect
-
-        width: parent.width
-        height: parent.height-mainBottom.height
-
-        color: msStyle.background
-        Rectangle {
-            width: parent.width / 2
-            height: parent.height
-            anchors.centerIn: parent
-            color: parent.color
-            Image {
-                id: img
-                width: parent.width; height: 96
-                y: (parent.height - height) / 2
-                source: "../resource/image/Mixware.svg"
-                horizontalAlignment: Text.AlignHCenter
-
-                fillMode: Image.PreserveAspectFit
-//                color: "##FF5A00"
-//                ColorOverlay {
-
-//                }
-            }
-
-            BaseLabel {
-                id: lbl
-                text: "Mixware Screen"
-                width: parent.width
-
-                anchors.top: img.bottom
-                horizontalAlignment: Text.AlignHCenter
-            }
-        }
-
-    }
+    property StackView stack: splashStack
 
     Rectangle {
-        id: mainBottom
-
-        anchors.bottom: parent.bottom
-        color: msStyle.background
-        height: 42
+        id: splashHeader
         width: parent.width
+        height: splashHeaderTitle.height
+        color: msStyle.background
 
-        BaseButton {
-            id: rbtn
-            text: qsTr("Reboot")
-
-            anchors.left: parent.left
-            width: parent.width/3
-            height: parent.height
-            onClicked: {
-                console.log("Restart Klipper$Not$")
-                screenLogger.reboot()
-            }
+        BaseLabel {
+            id: splashHeaderTitle
+            text: qsTr("Mixware Screen")
+            x: (parent.width - width) / 2
         }
-        BaseButton {
-            id: tbtn
-            text: qsTr("Shutdown")
 
-            anchors.left: rbtn.right
-            anchors.right: tsbtn.left
-            width: parent.width/3
-            height: parent.height
-            onClicked: {
-                console.log("Restart Firmware$Not$")
-            }
-        }
-        BaseButton {
-            id: tsbtn
-            text: qsTr("Menus")
+        BaseLabel {
+            id: splashHeaderTime
+            text: Qt.formatDateTime(new Date(), "hh:mm")
+
             anchors.right: parent.right
-            width: parent.width/3
-            height: parent.height
-
-            onClicked: {
-//                translator.select_language("cn")
-                page1.visible = true;
-                page1.stack = stack;
-                stack.push(page1)
+            anchors.rightMargin: msSettings.spacing
+            Timer {
+                interval: 1000
+                running: true
+                repeat: true
+                onTriggered: splashHeaderTime.text = Qt.formatDateTime(new Date(), "hh:mm")
             }
         }
     }
 
-    SplashMenusPage {
-        id: page1
-        width: splashPage.width
-        height: splashPage.height
+    BaseTabBar {
+        id: splashFooter
+        height: 48
+        width: parent.width
+        anchors.bottom: parent.bottom
+
+        stack: splashStack
+    }
+
+    StackView {
+        id: splashStack
+
+        width: parent.width
+        anchors.top: splashHeader.bottom
+        anchors.bottom: splashFooter.top
+
+        initialItem: SplashPageBody {
+            width: splashStack.width
+            height: splashStack.height
+            stack: splashStack
+        }
+    }
+
+    onVisibleChanged: {
+        if (splashStack.depth > 1)
+            splashStack.pop(null)
+
+
+//        console.log(Qt.fontFamilies())
+//        console.log(Font.Thin, Font.Light, Font.Normal, Font.Medium, Font.Bold, Font.Black)
     }
 }

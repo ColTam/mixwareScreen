@@ -2,13 +2,34 @@ import QtQuick 2.9
 import QtQuick.Window 2.3
 import QtQuick.Controls 2.5
 
+import Qt.labs.settings
+
 Window {
     id: window
     visible: true
-    width: 320
-    height: 540
+    width: 400
+    height: 960
+    minimumWidth: 240
+    minimumHeight: 320
     title: qsTr("Mixware Screen")
+    //    flags: Qt.FramelessWindowHint
 
+    Settings {
+        id: windowSetting
+        fileName: "./MixwareScreen.conf"
+
+        category: "window"
+        property alias x: window.x
+        property alias y: window.y
+    }
+
+    ScreenConfig {
+        id: msSettings
+    }
+
+    ScreenStyle {
+        id: msStyle
+    }
 
     Rectangle {
         id: root
@@ -16,37 +37,81 @@ Window {
         height: parent.height
         color: "#fff8dc"
 
-        //用于动态显示元素
-        Loader{
-            id:btnLoader
+        BaseButton{
+            id: toggleButton
+
+            text: "Toggle"
+            backColor : "#FFFFFF"
+
             width: parent.width
-            height: parent.height
-        }
+            height: 48
 
-        //切换状态
-        Timer {
-            interval: 5000
-            running: true
-            repeat: true
-            onTriggered: {
-                if (root.state == "disconnected")
-                    root.state = "connected"
-                else
-                    root.state = "disconnected"
-                console.log(root.state)
+            anchors.bottom: parent.bottom
+            anchors.right: parent.right
+
+            onClicked: {
+                if (mainStack.depth > 1)
+                    mainStack.pop(null)
+                else {
+                    printPage.visible = true;
+                    printPage.stack = mainStack;
+                    mainStack.push(printPage)
+                }
             }
         }
 
-        state: "disconnected"
-        states: [
-            State {
-                name: "disconnected"
-                PropertyChanges { target: btnLoader; source: "MixwareScreen.qml"; }
-            },
-            State {
-                name: "connected"
-                PropertyChanges { target: btnLoader; source: "HomePage.qml"; }
-            }
-        ]
+        StackView {
+            id: mainStack
+            width: parent.width
+            anchors.top: parent.top
+            anchors.bottom: toggleButton.top
+
+//            initialItem: printPage
+            initialItem: splashPage
+        }
+
+        SplashPage {
+            id: splashPage
+            width: mainStack.width
+            height: mainStack.height
+        }
+        PrintPage {
+            id: printPage
+            width: mainStack.width
+            height: mainStack.height
+        }
+
+    }
+
+    Rectangle {
+        id: notify
+        visible: false
+        height: 48
+        width: parent.width
+        color: msStyle.buttonColor4
+
+        property string inf: "message"
+
+        Label {
+            text: notify.inf
+
+            x: 16
+            y: (parent.height - height) / 2
+            color: msStyle.foreground
+        }
+        Button {
+            text: "×"
+            flat: true
+            width: parent.height
+            height: width
+            anchors.right: parent.right
+
+            onClicked: notify.visible = false
+        }
+    }
+
+    function show_notify(str) {
+        notify.inf = str
+        notify.visible = true
     }
 }

@@ -4,20 +4,30 @@ import QtQuick.Controls
 Switch {
     id: control
 
+    font.weight: msSettings.fontSize
+    font.pixelSize: {
+        switch (msSettings.fontSize) {
+        case Font.Light: return 11
+        case Font.Normal: return 14
+        case Font.Bold: return 20
+        default: return 14
+        }
+    }
+
     indicator: Rectangle {
-        implicitWidth: 48
-        implicitHeight: 26
+        implicitWidth: implicitHeight * 2
+        implicitHeight: radius * 2
         x: control.leftPadding
         y: parent.height / 2 - height / 2
-        radius: 13
+        radius: msSettings.radius * 1.5
         color: control.checked ? "#17a81a" : "#ffffff"
         border.color: control.checked ? "#17a81a" : "#cccccc"
 
         Rectangle {
             x: control.checked ? parent.width - width : 0
-            width: 26
-            height: 26
-            radius: 13
+            width: radius * 2
+            height: radius * 2
+            radius: parent.radius
             color: control.down ? "#cccccc" : "#ffffff"
             border.color: control.checked ? (control.down ? "#17a81a" : "#21be2b") : "#999999"
         }

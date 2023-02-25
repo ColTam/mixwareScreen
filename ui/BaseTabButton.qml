@@ -8,8 +8,18 @@ Button {
 
     opacity: enabled ? 1 : 0.5
 
+    font.weight: msSettings.fontSize
+    font.pixelSize: {
+        switch (msSettings.fontSize) {
+        case Font.Light: return 11
+        case Font.Normal: return 14
+        case Font.Bold: return 20
+        default: return 14
+        }
+    }
+
     contentItem: Text {
-        color: style.foreground
+        color: msStyle.foreground
     }
 
     background: Rectangle {

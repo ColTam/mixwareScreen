@@ -7,9 +7,11 @@ Rectangle {
     width: parent.width
     height: parent.height
 
+    property StackView stack: null
+
     BaseTabButton {
         id: returnTabButton
-//        enabled: false
+        enabled: stack.depth > 1 ? true : false
         width: parent.width / 3
         height: parent.height
         anchors.left: parent.left
@@ -27,8 +29,8 @@ Rectangle {
     }
     BaseTabButton {
         id: homeTabButton
-        //        enabled: false
-        width: parent.width/3
+        enabled: stack.depth > 1 ? true : false
+        width: parent.width / 3
         height: parent.height
         anchors.centerIn: parent
         BaseLabel {
@@ -45,8 +47,8 @@ Rectangle {
     }
     BaseTabButton {
         id: restartTabButton
-        enabled: false
-        width: parent.width/3
+        enabled: true
+        width: parent.width / 3
         height: parent.height
         anchors.right: parent.right
         BaseLabel {

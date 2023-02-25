@@ -4,7 +4,16 @@ import QtQuick.Controls 2.5
 Button {
     id: control
     flat: true
-    text: qsTr("Button")
+
+    font.weight: msSettings.fontSize
+    font.pixelSize: {
+        switch (msSettings.fontSize) {
+        case Font.Light: return 11
+        case Font.Normal: return 14
+        case Font.Bold: return 20
+        default: return 14
+        }
+    }
 
     property color backColor : msStyle.background
     property color textColor : msStyle.foreground
@@ -28,7 +37,7 @@ Button {
         anchors.fill: parent
         opacity: enabled ? 1 : 0.3
         color: control.down ? backDownColor : backColor
-        radius: 10
+        radius: msSettings.radius
 
         Rectangle {
             visible: bottomLine
@@ -51,7 +60,7 @@ Button {
 
         Rectangle {
             visible: leftLine
-            width: parent.radius
+            width: parent.radius / 2
             height: parent.height
             color: parent.color.darker()
             radius: 0
@@ -59,7 +68,5 @@ Button {
             anchors.left: parent.left
         }
     }
-    onLeftLineChanged: {btnBack.radius = 10}
-    onBottomLineChanged: {btnBack.radius = 5}
 
 }

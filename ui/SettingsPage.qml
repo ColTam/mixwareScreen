@@ -11,21 +11,20 @@ Rectangle {
 
     width: parent.width
     height: parent.height
-
     color: msStyle.background
 
     property StackView stack: null
 
     ScrollView {
         id: settingPageScrollView
-        anchors.fill: parent
-
         ScrollBar.vertical.policy: ScrollBar.AlwaysOff
+
+        anchors.fill: parent
 
         Column {
             id: spcl
             anchors.fill: parent
-            spacing: 5
+            spacing: msSettings.spacing
 
             BaseSettingsItem {
                 width: settingPageScrollView.availableWidth - parent.spacing * 2
@@ -33,8 +32,8 @@ Rectangle {
 
                 BaseSwitch {
                     id: autoCloseSwitch
-                    x: parent.width-width
-                    y: (parent.height-height)/2
+                    x: parent.width - width
+                    y: (parent.height - height) / 2
                     checked: msSettings.autoCloseEnabled
                     onCheckedChanged: {
                         msSettings.autoCloseEnabled = checked
@@ -47,8 +46,8 @@ Rectangle {
 
                 BaseSwitch {
                     id: heaterPowerSwitch
-                    x: parent.width-width
-                    y: (parent.height-height)/2
+                    x: parent.width - width
+                    y: (parent.height - height) / 2
                     checked: msSettings.heaterPowerEnabled
                     onCheckedChanged: {
                         msSettings.heaterPowerEnabled = checked
@@ -61,8 +60,8 @@ Rectangle {
 
                 BaseComboBox {
                     id: themeComboBox
-                    x: parent.width-width-10
-                    y: (parent.height-height)/2
+                    x: parent.width - width - 10
+                    y: (parent.height - height) / 2
                     model: ["default", "light", "dark"]
                     currentIndex : msSettings.theme
                     onCurrentIndexChanged: {
@@ -76,8 +75,8 @@ Rectangle {
 
                 BaseComboBox {
                     id: timeComboBox
-                    x: parent.width-width-10
-                    y: (parent.height-height)/2
+                    x: parent.width - width - 10
+                    y: (parent.height - height) / 2
                     model: ["auto", "file", "size", "line"]
                     currentIndex : msSettings.time
                     onCurrentIndexChanged: {
@@ -91,8 +90,8 @@ Rectangle {
 
                 BaseSwitch {
                     id: hoursSwitch
-                    x: parent.width-width
-                    y: (parent.height-height)/2
+                    x: parent.width - width
+                    y: (parent.height - height) / 2
                     checked: msSettings.hoursSwitchEnabled
                     onCheckedChanged: {
                         msSettings.hoursSwitchEnabled = checked
@@ -105,8 +104,8 @@ Rectangle {
 
                 BaseComboBox {
                     id: closeDisplayComboBox
-                    x: parent.width-width-10
-                    y: (parent.height-height)/2
+                    x: parent.width - width - 10
+                    y: (parent.height - height) / 2
                     model: ["auto", "file", "size", "line"]
                     currentIndex : msSettings.closeDisplay
                     onCurrentIndexChanged: {
@@ -120,12 +119,24 @@ Rectangle {
 
                 BaseComboBox {
                     id: fontSizeComboBox
-                    x: parent.width-width-10
-                    y: (parent.height-height)/2
-                    model: ["auto", "file", "size", "line"]
-                    currentIndex : msSettings.fontSize
+                    x: parent.width - width - 10
+                    y: (parent.height - height) / 2
+                    model: ["Light", "Normal", "Bold"]
+                    currentIndex: {
+                        switch (msSettings.fontSize) {
+                        case Font.Light: return 0
+                        case Font.Normal: return 1
+                        case Font.Bold: return 2
+                        default: return 1
+                        }
+                    }
                     onCurrentIndexChanged: {
-                        msSettings.fontSize = currentIndex // save
+                        switch (currentIndex) {
+                        case 0: msSettings.fontSize = Font.Light; break
+                        case 1: msSettings.fontSize = Font.Normal; break
+                        case 2: msSettings.fontSize = Font.Bold; break
+                        default: msSettings.fontSize = Font.Normal; break
+                        }
                     }
                 }
             }
@@ -135,8 +146,8 @@ Rectangle {
 
                 BaseSwitch {
                     id: dmpsSwitch
-                    x: parent.width-width
-                    y: (parent.height-height)/2
+                    x: parent.width - width
+                    y: (parent.height - height) / 2
                     checked: msSettings.dmpsSwitchEnabled
                     onCheckedChanged: {
                         msSettings.dmpsSwitchEnabled = checked
@@ -149,8 +160,8 @@ Rectangle {
 
                 BaseSwitch {
                     id: stopSwitch
-                    x: parent.width-width
-                    y: (parent.height-height)/2
+                    x: parent.width - width
+                    y: (parent.height - height) / 2
                     checked: msSettings.stopSwitchEnabled
                     onCheckedChanged: {
                         msSettings.stopSwitchEnabled = checked
@@ -163,8 +174,8 @@ Rectangle {
 
                 BaseComboBox {
                     id: languageComboBox
-                    x: parent.width-width-10
-                    y: (parent.height-height)/2
+                    x: parent.width - width - 10
+                    y: (parent.height - height) / 2
                     model: ["auto", "en", "cn", "fr", "jp"]
                     currentIndex : msSettings.language
                     onCurrentIndexChanged: {

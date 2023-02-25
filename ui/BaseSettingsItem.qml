@@ -7,10 +7,10 @@ Rectangle {
     property string settingsItemText: "SettingsItem"
 
     x: 5
-    radius: 10
+    radius: msSettings.radius
     color: msStyle.background
     width: 240
-    height: 64
+    height: 48
 
     BaseLabel {
         x: 10

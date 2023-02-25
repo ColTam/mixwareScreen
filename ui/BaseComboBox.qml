@@ -5,9 +5,19 @@ ComboBox {
     id: control
     model: ["First", "Second", "Third"]
 
-    spacing: 5
-    leftPadding: 5
-    rightPadding: 5
+    spacing: msSettings.spacing
+    leftPadding: msSettings.spacing
+    rightPadding: msSettings.spacing
+
+    font.weight: msSettings.fontSize
+    font.pixelSize: {
+        switch (msSettings.fontSize) {
+        case Font.Light: return 11
+        case Font.Normal: return 14
+        case Font.Bold: return 20
+        default: return 14
+        }
+    }
 
     delegate: ItemDelegate {
         width: control.width
@@ -58,17 +68,17 @@ ComboBox {
 
     background: Rectangle {
         implicitWidth: 64
-        implicitHeight: 40
+        implicitHeight: 36
         border.color: control.pressed ? "#17a81a" : "#21be2b"
         border.width: control.visualFocus ? 2 : 1
-        radius: 5
+        radius: msSettings.radius
     }
 
     popup: Popup {
         y: control.height - 1
         width: control.width
         implicitHeight: contentItem.implicitHeight
-        padding: 1
+        padding: msSettings.spacing / 2
 
         contentItem: ListView {
             clip: true
@@ -81,7 +91,7 @@ ComboBox {
 
         background: Rectangle {
             border.color: "#21be2b"
-            radius: 5
+            radius: msSettings.radius
         }
     }
 }
