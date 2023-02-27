@@ -6,7 +6,7 @@ import logging
 import logging.handlers
 
 from queue import SimpleQueue as Queue
-from PySide6 import QtCore
+from PyQt5 import QtCore
 
 
 # LoggingHandler based on KlipperScreen's LoggingHandler setup
@@ -79,11 +79,11 @@ class MixwareScreenLogger(QtCore.QObject):
 
         return listener, fh
 
-    @QtCore.Slot(str)
+    @QtCore.pyqtSlot(str)
     def info(self, str):
         logging.info(str)
 
-    @QtCore.Slot()
+    @QtCore.pyqtSlot()
     def reboot(self):
         os.system("init 6")
 

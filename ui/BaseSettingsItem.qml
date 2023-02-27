@@ -22,7 +22,7 @@ Rectangle {
     Rectangle {
         height: 1
         width: parent.width
-        color: parent.color.darker()
+        color: Qt.darker(parent.color)
 
         anchors.bottom: parent.bottom
     }

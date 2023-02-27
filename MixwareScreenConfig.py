@@ -2,7 +2,7 @@ import configparser
 import os.path
 
 # This Python file uses the following encoding: utf-8
-from PySide6 import QtCore
+from PyQt5 import QtCore
 
 
 class MixwareScreenConfig(QtCore.QObject):
@@ -15,6 +15,6 @@ class MixwareScreenConfig(QtCore.QObject):
         self.screen_height = self.config.get('window', 'height')
         self.lang = self.config.get('set', 'language')
 
-    @QtCore.Slot(str, result=str)
+    @QtCore.pyqtSlot(str, result=str)
     def get_option(self, opt):
         return self.config.get('set', opt)

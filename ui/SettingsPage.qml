@@ -3,7 +3,7 @@ import QtQuick.Window 2.3
 import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.3
 
-import Qt.labs.settings
+import Qt.labs.settings 1.0
 
 Rectangle {
     id: settingsPage

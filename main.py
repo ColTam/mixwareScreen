@@ -3,10 +3,10 @@ import os.path
 import sys
 import logging
 
-from PySide6 import QtCore
-from PySide6.QtCore import QTranslator, qInstallMessageHandler
-from PySide6.QtQml import QQmlApplicationEngine
-from PySide6.QtGui import QGuiApplication, QIcon
+from PyQt5 import QtCore
+from PyQt5.QtCore import QTranslator, qInstallMessageHandler
+from PyQt5.QtQml import QQmlApplicationEngine
+from PyQt5.QtGui import QGuiApplication, QIcon
 
 from MixwareScreenConfig import MixwareScreenConfig
 from MixwareScreenLogger import MixwareScreenLogger
@@ -19,13 +19,13 @@ class Translation(QtCore.QObject):
         'fr': QTranslator(),
         'sp': QTranslator(),
     }
-    languageChanged = QtCore.Signal()
+    languageChanged = QtCore.pyqtSignal()
 
     def __init__(self, app):
         super().__init__(app)
         self.app = app
 
-    @QtCore.Slot(str)
+    @QtCore.pyqtSlot(str)
     def select_language(self, language):
         if language == "fr":
             Translation.translators['fr'].load("t1_fr", ".")

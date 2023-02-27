@@ -17,8 +17,8 @@ Button {
 
     property color backColor : msStyle.background
     property color textColor : msStyle.foreground
-    property color backDownColor : backColor.darker()
-    property color textDownColor : textColor.lighter()
+    property color backDownColor : Qt.darker(backColor)
+    property color textDownColor : Qt.darker(textColor)
     property bool bottomLine: false
     property bool leftLine: false
 
@@ -43,7 +43,7 @@ Button {
             visible: bottomLine
             height: radius * 3
             width: parent.width
-            color: parent.color.darker()
+            color: Qt.darker(parent.color)
             radius: parent.radius
 
             anchors.bottom: parent.bottom
@@ -62,7 +62,7 @@ Button {
             visible: leftLine
             width: parent.radius / 2
             height: parent.height
-            color: parent.color.darker()
+            color: Qt.darker(parent.color)
             radius: 0
 
             anchors.left: parent.left
