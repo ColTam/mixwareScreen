@@ -6,7 +6,7 @@ MSENV="${MIXWARESCREEN_VENV:-${HOME}/.MixwareScreen-env}"
 
 XSERVER="xinit xinput x11-xserver-utils xserver-xorg-input-evdev xserver-xorg-input-libinput"
 FBDEV="xserver-xorg-video-fbdev"
-PYTHON="python3-virtualenv virtualenv python3-distutils"
+PYTHON="python3-virtualenv virtualenv python3-distutils python3-pyqt5"
 PYGOBJECT="libgirepository1.0-dev gcc libcairo2-dev pkg-config python3-dev gir1.2-gtk-3.0"
 MISC="librsvg2-common libopenjp2-7 libatlas-base-dev wireless-tools libdbus-glib-1-dev autoconf"
 OPTIONAL="xserver-xorg-legacy fonts-nanum fonts-ipafont libmpv-dev"
@@ -124,6 +124,7 @@ create_virtualenv()
             exit 1
         fi
     fi
+    sed -ie 's/include-system-site-packages = false/include-system-site-packages = true/g' ${MSENV}/pyvenv.cfg
     deactivate
     echo_ok "Virtual enviroment created"
 }

@@ -18,7 +18,7 @@ fi
 #    
 
 export PYMIXWARESCREEN=~/.MixwareScreen-env/bin/python
-export PYMIXWARESCREENPARAM=~/MixwareScreen/screen.py
+export PYMIXWARESCREENPARAM=~/MixwareScreen/main.py
 
 
 if [ -f $PYMIXWARESCREEN ]; then
