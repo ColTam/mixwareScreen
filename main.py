@@ -45,14 +45,16 @@ class Translation(QtCore.QObject):
 
 
 if __name__ == '__main__':
+    setpath = os.path.abspath(os.path.dirname(__file__)) + "/"
+
     app = QGuiApplication(sys.argv)
-    app.setWindowIcon(QIcon("./resource/image/Mixware.svg"))
+    app.setWindowIcon(QIcon(setpath + "resource/image/Mixware.svg"))
 #    app.setOrganizationName("Mixware")
 #    app.setOrganizationDomain("www.mixwarebot.com")
 #    app.setApplicationName("MixwareScreen")
-    ms_config = MixwareScreenConfig()
+    ms_config = MixwareScreenConfig(setpath)
     ms_logger = MixwareScreenLogger()
-    ms_logger.log_file = "./MixwareScreen.log"
+    ms_logger.log_file = setpath + "MixwareScreen.log"
     ms_logger.software_version = "1.0"
     ms_logger.setup_logging()
 
@@ -63,9 +65,9 @@ if __name__ == '__main__':
     engine.rootContext().setContextProperty("translator", ts)
     engine.rootContext().setContextProperty("screenConfig", ms_config)
     engine.rootContext().setContextProperty("screenLogger", ms_logger)
-    engine.rootContext().setContextProperty("appDir", os.path.abspath(os.path.dirname(__file__)))
+    engine.rootContext().setContextProperty("appDir", setpath)
     engine.rootContext().setContextProperty("logging", logging)
     engine.quit.connect(app.quit)
-    engine.load('ui/main.qml')
+    engine.load(setpath + "ui/main.qml")
 
     sys.exit(app.exec())

@@ -3,7 +3,7 @@ import Qt.labs.settings 1.0
 
 Settings {
     id: set
-    fileName: appDir + "/MixwareScreen.conf"
+    fileName: appDir + "MixwareScreen.conf"
 
     category: "set"
     property bool autoCloseEnabled: screenConfig.get_option('autoCloseEnabled')
