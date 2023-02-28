@@ -452,3 +452,17 @@ Git Version: 1.0
 Git Version: 1.0
 --------------------Mixware Screen Log Start--------------------
 Git Version: 1.0
+--------------------Mixware Screen Log Start--------------------
+Git Version: 1.0
+2023-02-28 10:19:36,791 [MixwareScreenLogger.py:logging_exception_handler()] - Uncaught exception <class 'NameError'>: name 'qApp' is not defined
+  File "E:\Users\RODEO_T\Documents\mixwareScreen\main.py", line 66, in <module>
+    engine.rootContext().setContextProperty("appDir", qApp.applicationDirPath())
+NoneType: None
+--------------------Mixware Screen Log Start--------------------
+Git Version: 1.0
+2023-02-28 10:19:57,885 [MixwareScreenLogger.py:logging_exception_handler()] - Uncaught exception <class 'AttributeError'>: 'QQmlApplicationEngine' object has no attribute 'applicationDirPath'
+  File "E:\Users\RODEO_T\Documents\mixwareScreen\main.py", line 66, in <module>
+    engine.rootContext().setContextProperty("appDir", engine.applicationDirPath())
+NoneType: None
+--------------------Mixware Screen Log Start--------------------
+Git Version: 1.0

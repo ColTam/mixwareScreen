@@ -63,9 +63,9 @@ if __name__ == '__main__':
     engine.rootContext().setContextProperty("translator", ts)
     engine.rootContext().setContextProperty("screenConfig", ms_config)
     engine.rootContext().setContextProperty("screenLogger", ms_logger)
+    engine.rootContext().setContextProperty("appDir", os.path.abspath(os.path.dirname(__file__)))
     engine.rootContext().setContextProperty("logging", logging)
     engine.quit.connect(app.quit)
-#    engine.load('ui/MixwareScreen.qml')
     engine.load('ui/main.qml')
 
     sys.exit(app.exec())

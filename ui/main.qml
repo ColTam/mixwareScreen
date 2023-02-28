@@ -17,7 +17,7 @@ Window {
 
     Settings {
         id: windowSetting
-        fileName: "./MixwareScreen.conf"
+        fileName: appDir + "/MixwareScreen.conf"
 
         category: "window"
         property alias x: window.x
