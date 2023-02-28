@@ -23,7 +23,7 @@ Rectangle {
             anchors.fill: parent
             onClicked: {
                 if (stack.depth > 1)
-                    stack.pop()
+                    stack.pop(StackView.Immediate)
             }
         }
     }
@@ -41,7 +41,7 @@ Rectangle {
             anchors.fill: parent
             onClicked: {
                 if (stack.depth > 1)
-                    stack.pop(null)
+                    stack.pop(null, StackView.Immediate)
             }
         }
     }

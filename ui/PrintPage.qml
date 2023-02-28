@@ -86,6 +86,6 @@ Rectangle {
 
     onVisibleChanged: {
         if (printStack.depth > 1)
-            printStack.pop(null)
+            printStack.pop(null, StackView.Immediate)
     }
 }

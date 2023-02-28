@@ -38,7 +38,7 @@ Rectangle {
                 console.log("Temperature Screen$Not$")
                 //                settingsPage.visible = true;
                 //                settingsPage.stack = stack;
-                //                stack.push(settingsPage)
+                //                stack.push(settingsPage, StackView.Immediate)
             }
         }
         BaseButton {
@@ -52,7 +52,7 @@ Rectangle {
                 console.log("Fan Screen$Not$")
                 //                settingsPage.visible = true;
                 //                settingsPage.stack = stack;
-                //                stack.push(settingsPage)
+                //                stack.push(settingsPage, StackView.Immediate)
             }
         }
         BaseButton {
@@ -66,7 +66,7 @@ Rectangle {
                 console.log("Filament Screen$Not$")
                 //                settingsPage.visible = true;
                 //                settingsPage.stack = stack;
-                //                stack.push(settingsPage)
+                //                stack.push(settingsPage, StackView.Immediate)
             }
         }
         BaseButton {
@@ -80,7 +80,7 @@ Rectangle {
                 console.log("Home Screen$Not$")
                 homePage.visible = true;
                 homePage.stack = stack;
-                stack.push(homePage)
+                stack.push(homePage, StackView.Immediate)
             }
         }
         BaseButton {
@@ -94,7 +94,7 @@ Rectangle {
                 console.log("Level Screen$Not$")
                 //                settingsPage.visible = true;
                 //                settingsPage.stack = stack;
-                //                stack.push(settingsPage)
+                //                stack.push(settingsPage, StackView.Immediate)
             }
         }
         BaseButton {
@@ -108,7 +108,7 @@ Rectangle {
                 console.log("Move Screen$Not$")
 //                settingsPage.visible = true;
 //                settingsPage.stack = stack;
-//                stack.push(settingsPage)
+//                stack.push(settingsPage, StackView.Immediate)
             }
         }
     }

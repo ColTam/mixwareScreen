@@ -61,7 +61,7 @@ Rectangle {
             onClicked: {
                 settingsPage.visible = true;
                 settingsPage.stack = stack;
-                stack.push(settingsPage)
+                stack.push(settingsPage, StackView.Immediate)
             }
         }
     }

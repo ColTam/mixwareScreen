@@ -64,7 +64,7 @@ Rectangle {
 
     onVisibleChanged: {
         if (splashStack.depth > 1)
-            splashStack.pop(null)
+            splashStack.pop(null, StackView.Immediate)
 
 
 //        console.log(Qt.fontFamilies())

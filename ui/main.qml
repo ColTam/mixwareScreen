@@ -7,12 +7,13 @@ import Qt.labs.settings 1.0
 Window {
     id: window
     visible: true
+//    visibility: Window.FullScreen
+//    flags: Qt.FramelessWindowHint
     width: 400
     height: 960
     minimumWidth: 240
     minimumHeight: 320
     title: qsTr("Mixware Screen")
-    //    flags: Qt.FramelessWindowHint
 
     Settings {
         id: windowSetting
@@ -51,11 +52,11 @@ Window {
 
             onClicked: {
                 if (mainStack.depth > 1)
-                    mainStack.pop(null)
+                    mainStack.pop(null, StackView.Immediate)
                 else {
                     printPage.visible = true;
                     printPage.stack = mainStack;
-                    mainStack.push(printPage)
+                    mainStack.push(printPage, StackView.Immediate)
                 }
             }
         }

@@ -81,7 +81,7 @@ Page {
 //                translator.select_language("cn")
                 splashMenuspage.visible = true;
                 splashMenuspage.stack = stack;
-                stack.push(splashMenuspage)
+                stack.push(splashMenuspage, StackView.Immediate)
             }
         }
     }

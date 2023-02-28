@@ -132,7 +132,7 @@ Page {
             onClicked: {
                 splashMenuspage.visible = true;
                 splashMenuspage.stack = stack;
-                stack.push(splashMenuspage)
+                stack.push(splashMenuspage, StackView.Immediate)
             }
         }
         BaseButton {
@@ -159,7 +159,7 @@ Page {
             onClicked: {
                 splashMenuspage.visible = true;
                 splashMenuspage.stack = stack;
-                stack.push(splashMenuspage)
+                stack.push(splashMenuspage, StackView.Immediate)
             }
         }
     }
