@@ -7,7 +7,7 @@ import Qt.labs.settings 1.0
 Window {
     id: window
     visible: true
-//    visibility: Window.FullScreen
+    visibility: Window.FullScreen
 //    flags: Qt.FramelessWindowHint
     width: 400
     height: 960
