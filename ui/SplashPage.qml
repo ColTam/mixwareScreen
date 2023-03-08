@@ -12,18 +12,21 @@ Rectangle {
 
     property StackView stack: splashStack
 
+    // header section
     Rectangle {
         id: splashHeader
         width: parent.width
         height: splashHeaderTitle.height
         color: msStyle.background
+        z: 99
 
+        // Title section
         BaseLabel {
             id: splashHeaderTitle
             text: qsTr("Mixware Screen")
             x: (parent.width - width) / 2
         }
-
+        // System time section
         BaseLabel {
             id: splashHeaderTime
             text: Qt.formatDateTime(new Date(), "hh:mm")
@@ -38,19 +41,19 @@ Rectangle {
             }
         }
     }
-
+    // Page Control section
     BaseTabBar {
         id: splashFooter
         height: 48
         width: parent.width
         anchors.bottom: parent.bottom
+        z: 88
 
         stack: splashStack
     }
-
+    // Body section
     StackView {
         id: splashStack
-
         width: parent.width
         anchors.top: splashHeader.bottom
         anchors.bottom: splashFooter.top

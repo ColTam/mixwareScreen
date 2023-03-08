@@ -12,16 +12,18 @@ Page {
 
     property StackView stack: null
 
+    // Infomation section
     Rectangle {
         width: parent.width
-        height: parent.height - mainBottom.height
-
+        height: parent.height - splashPageBodyBottom.height
         color: msStyle.background
+
         Rectangle {
             width: parent.width / 2
             height: parent.height
             anchors.centerIn: parent
             color: parent.color
+            // Logo section
             Image {
                 id: logo
                 width: parent.width
@@ -32,7 +34,7 @@ Page {
 
                 fillMode: Image.PreserveAspectFit
             }
-
+            // System message section
             BaseLabel {
                 text: "Mixware Screen"
                 width: parent.width
@@ -44,33 +46,39 @@ Page {
 
     }
 
+    // Control section
     Rectangle {
-        id: mainBottom
+        id: splashPageBodyBottom
 
         anchors.bottom: parent.bottom
         color: msStyle.background
         height: 42
         width: parent.width
 
+        // Restart klipper or reboot system
         BaseButton {
-            text: qsTr("Reboot")
+            text: qsTr("Restart Klipper")
 
             width: parent.width / 3
             height: parent.height
             onClicked: {
                 console.log("Restart Klipper$Not$")
-                screenLogger.reboot()
+//                screenLogger.reboot()
+                printer.restart_klipper()
             }
         }
+        // Restart firmware or shutdown system
         BaseButton {
-            text: qsTr("Shutdown")
+            text: qsTr("Restart Firmware")
             x: (parent.width - width) / 2
             width: parent.width / 3
             height: parent.height
             onClicked: {
                 console.log("Restart Firmware$Not$")
+                printer.restart_firmware()
             }
         }
+        // open splash menus page
         BaseButton {
             text: qsTr("Menus")
             anchors.right: parent.right

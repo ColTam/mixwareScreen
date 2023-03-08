@@ -17,6 +17,7 @@ Rectangle {
         width: parent.width
         height: printHeaderTitle.height
         color: msStyle.background
+        z: 99
 
         Row {
             anchors.fill: parent
@@ -24,19 +25,19 @@ Rectangle {
                 text: " L: "
             }
             BaseLabel {
-                text: "25°"
+                id: extLeft
             }
             BaseLabel {
                 text: " R: "
             }
             BaseLabel {
-                text: "25°"
+                id: extRight
             }
             BaseLabel {
                 text: " B: "
             }
             BaseLabel {
-                text: "25°"
+                id: bed
             }
         }
 
@@ -63,9 +64,10 @@ Rectangle {
 
     BaseTabBar {
         id: printFooter
-        height: 48
+        height: 64
         width: parent.width
         anchors.bottom: parent.bottom
+        z: 88
 
         stack: printStack
     }
@@ -87,5 +89,16 @@ Rectangle {
     onVisibleChanged: {
         if (printStack.depth > 1)
             printStack.pop(null, StackView.Immediate)
+    }
+
+    Timer {
+        interval: 1000
+        running: true
+        repeat: true
+        onTriggered: {
+            extLeft.text = printer.get_temperatures("extruder", false, false)
+            extRight.text = printer.get_temperatures("extruder1", false, false)
+            bed.text = printer.get_temperatures("heater_bed", false, false)
+        }
     }
 }

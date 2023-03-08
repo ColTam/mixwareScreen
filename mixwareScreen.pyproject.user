@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 7.0.2, 2023-02-28T09:00:23. -->
+<!-- Written by QtCreator 7.0.2, 2023-03-08T09:24:43. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -112,7 +112,11 @@
     <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
-    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes">
+     <value type="QString">QT_MESSAGE_PATTERN
+=%{file}:%{line} %{message}
+</value>
+    </valuelist>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">E:/Users/RODEO_T/Documents/mixwareScreen/main.py</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.E:/Users/RODEO_T/Documents/mixwareScreen/main.py</value>
     <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">E:/Users/RODEO_T/Documents/mixwareScreen/main.py</value>

@@ -58,7 +58,7 @@ Rectangle {
         MouseArea {
             anchors.fill: parent
             onClicked: {
-                console.log("重启，待实现")
+                printer.emergency_stop()
             }
         }
     }

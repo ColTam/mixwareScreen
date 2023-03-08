@@ -28,14 +28,14 @@ Rectangle {
         property int buttonHeight: (height - spacing * (rows > 0 ? rows - 1 : 0) - spacing) / (rows > 0 ? rows : 1)
 
         BaseButton {
-            text: qsTr("Home X Left")
+            text: qsTr("Home X")
             width: gridView.buttonWidth
             height: gridView.buttonHeight
             backColor : msStyle.buttonColor1
 
             bottomLine: true
             onClicked: {
-                console.log("Home X-L $Not$")
+                printer.gcode_script("G28X")
             }
         }
         BaseButton {
@@ -46,18 +46,18 @@ Rectangle {
 
             bottomLine: true
             onClicked: {
-                console.log("Home Y $Not$")
+                printer.gcode_script("G28Y")
             }
         }
         BaseButton {
-            text: qsTr("Home X Right")
+            text: qsTr("Home XY")
             width: gridView.buttonWidth
             height: gridView.buttonHeight
             backColor : msStyle.buttonColor2
 
             bottomLine: true
             onClicked: {
-                console.log("Home X-R $Not$")
+                printer.gcode_script("G28XY")
             }
         }
         BaseButton {
@@ -68,7 +68,7 @@ Rectangle {
 
             bottomLine: true
             onClicked: {
-                console.log("Home Z $Not$")
+                printer.gcode_script("G28Z")
             }
         }
         BaseButton {
@@ -79,7 +79,7 @@ Rectangle {
 
             bottomLine: true
             onClicked: {
-                console.log("Home All $Not$")
+                printer.gcode_script("G28")
             }
         }
         BaseButton {
@@ -90,7 +90,7 @@ Rectangle {
 
             bottomLine: true
             onClicked: {
-                console.log("Disabled Motor $Not$")
+                printer.gcode_script("M84")
             }
         }
     }

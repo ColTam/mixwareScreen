@@ -27,7 +27,7 @@ Rectangle {
             spacing: msSettings.spacing
 
             BaseSettingsItem {
-                width: settingPageScrollView.availableWidth - parent.spacing * 2
+                width: settingPageScrollView.availableWidth
                 settingsItemText: qsTr("Auto-close notifications")
 
                 BaseSwitch {
@@ -41,7 +41,7 @@ Rectangle {
                 }
             }
             BaseSettingsItem {
-                width: settingPageScrollView.availableWidth - parent.spacing * 2
+                width: settingPageScrollView.availableWidth
                 settingsItemText: qsTr("Show Heater Power")
 
                 BaseSwitch {
@@ -55,7 +55,7 @@ Rectangle {
                 }
             }
             BaseSettingsItem {
-                width: settingPageScrollView.availableWidth - parent.spacing * 2
+                width: settingPageScrollView.availableWidth
                 settingsItemText: qsTr("Theme")
 
                 BaseComboBox {
@@ -70,7 +70,7 @@ Rectangle {
                 }
             }
             BaseSettingsItem {
-                width: settingPageScrollView.availableWidth - parent.spacing * 2
+                width: settingPageScrollView.availableWidth
                 settingsItemText: qsTr("time")
 
                 BaseComboBox {
@@ -85,7 +85,7 @@ Rectangle {
                 }
             }
             BaseSettingsItem {
-                width: settingPageScrollView.availableWidth - parent.spacing * 2
+                width: settingPageScrollView.availableWidth
                 settingsItemText: qsTr("24 Hours")
 
                 BaseSwitch {
@@ -99,7 +99,7 @@ Rectangle {
                 }
             }
             BaseSettingsItem {
-                width: settingPageScrollView.availableWidth - parent.spacing * 2
+                width: settingPageScrollView.availableWidth
                 settingsItemText: qsTr("Display Close Time")
 
                 BaseComboBox {
@@ -114,7 +114,7 @@ Rectangle {
                 }
             }
             BaseSettingsItem {
-                width: settingPageScrollView.availableWidth - parent.spacing * 2
+                width: settingPageScrollView.availableWidth
                 settingsItemText: qsTr("Font Size")
 
                 BaseComboBox {
@@ -141,7 +141,7 @@ Rectangle {
                 }
             }
             BaseSettingsItem {
-                width: settingPageScrollView.availableWidth - parent.spacing * 2
+                width: settingPageScrollView.availableWidth
                 settingsItemText: qsTr("DMPS")
 
                 BaseSwitch {
@@ -155,7 +155,7 @@ Rectangle {
                 }
             }
             BaseSettingsItem {
-                width: settingPageScrollView.availableWidth - parent.spacing * 2
+                width: settingPageScrollView.availableWidth
                 settingsItemText: qsTr("Stop")
 
                 BaseSwitch {
@@ -169,7 +169,7 @@ Rectangle {
                 }
             }
             BaseSettingsItem {
-                width: settingPageScrollView.availableWidth - parent.spacing * 2
+                width: settingPageScrollView.availableWidth
                 settingsItemText: qsTr("Language")
 
                 BaseComboBox {

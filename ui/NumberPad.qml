@@ -12,7 +12,7 @@ Rectangle {
     color: msStyle.background
 
     property int number: 0
-    property BaseLabel target: null
+    property string heater: ""
 
     Column {
         spacing: msSettings.spacing
@@ -195,8 +195,8 @@ Rectangle {
                 backColor: "white"
 
                 onClicked: {
+                    printer.set_temperatures(heater, number)
                     numberPad.visible = false
-                    target.text = number
                 }
             }
         }

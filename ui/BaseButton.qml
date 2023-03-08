@@ -68,5 +68,4 @@ Button {
             anchors.left: parent.left
         }
     }
-
 }

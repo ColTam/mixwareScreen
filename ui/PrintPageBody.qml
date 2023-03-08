@@ -34,68 +34,9 @@ Page {
                 }
             }
             BaseLabel {
+                id: extLeft
                 width: (parent.width - parent.spacing) / 2
                 height: parent.height
-
-                text: "25"
-
-                MouseArea {
-                    anchors.fill: parent
-
-                    onClicked: {
-                        if (numberPad.visible) numberPad.visible = false
-                        else numberPad.visible = true
-                    }
-                }
-            }
-        }
-        Row {
-            width: parent.width
-            height: (parent.height - spacing * 2) / 3
-            spacing: parent.spacing
-
-            BaseButton {
-                width: (parent.width - parent.spacing) / 2
-                height: parent.height
-                leftLine: true
-
-                onClicked: {
-                }
-            }
-            BaseLabel {
-                width: (parent.width - parent.spacing) / 2
-                height: parent.height
-
-                text: "25/220"
-
-                MouseArea {
-                    anchors.fill: parent
-
-                    onClicked: {
-                        if (numberPad.visible) numberPad.visible = false
-                        else numberPad.visible = true
-                    }
-                }
-            }
-        }
-        Row {
-            width: parent.width
-            height: (parent.height - spacing * 2) / 3
-            spacing: parent.spacing
-
-            BaseButton {
-                width: (parent.width - parent.spacing) / 2
-                height: parent.height
-                leftLine: true
-
-                onClicked: {
-                }
-            }
-            BaseLabel {
-                width: (parent.width - parent.spacing) / 2
-                height: parent.height
-
-                text: "25"
 
                 MouseArea {
                     anchors.fill: parent
@@ -106,7 +47,73 @@ Page {
                         }
                         else {
                             numberPad.visible = true
-                            numberPad.target = parent
+                            numberPad.heater = "extruder"
+                        }
+                    }
+                }
+            }
+        }
+        Row {
+            width: parent.width
+            height: (parent.height - spacing * 2) / 3
+            spacing: parent.spacing
+
+            BaseButton {
+                width: (parent.width - parent.spacing) / 2
+                height: parent.height
+                leftLine: true
+
+                onClicked: {
+                }
+            }
+            BaseLabel {
+                id: extRight
+                width: (parent.width - parent.spacing) / 2
+                height: parent.height
+
+                MouseArea {
+                    anchors.fill: parent
+
+                    onClicked: {
+                        if (numberPad.visible) {
+                            numberPad.visible = false
+                        }
+                        else {
+                            numberPad.visible = true
+                            numberPad.heater = "extruder1"
+                        }
+                    }
+                }
+            }
+        }
+        Row {
+            width: parent.width
+            height: (parent.height - spacing * 2) / 3
+            spacing: parent.spacing
+
+            BaseButton {
+                width: (parent.width - parent.spacing) / 2
+                height: parent.height
+                leftLine: true
+
+                onClicked: {
+                }
+            }
+            BaseLabel {
+                id: bed
+                width: (parent.width - parent.spacing) / 2
+                height: parent.height
+
+                MouseArea {
+                    anchors.fill: parent
+
+                    onClicked: {
+                        if (numberPad.visible) {
+                            numberPad.visible = false
+                        }
+                        else {
+                            numberPad.visible = true
+                            numberPad.heater = "heater_bed"
                         }
                     }
                 }
@@ -130,9 +137,9 @@ Page {
             backColor : msStyle.buttonColor1
 
             onClicked: {
-                splashMenuspage.visible = true;
-                splashMenuspage.stack = stack;
-                stack.push(splashMenuspage, StackView.Immediate)
+                printFilePage.visible = true;
+                printFilePage.stack = stack;
+                stack.push(printFilePage, StackView.Immediate)
             }
         }
         BaseButton {
@@ -145,7 +152,7 @@ Page {
             onClicked: {
                 controlPage.visible = true;
                 controlPage.stack = stack;
-                stack.push(controlPage)
+                stack.push(controlPage, StackView.Immediate)
             }
         }
         BaseButton {
@@ -172,6 +179,12 @@ Page {
         anchors.bottom: parent.bottom
     }
 
+    PrintFilePage {
+        id: printFilePage
+        width: parent.width
+        height: parent.height
+    }
+
     SplashMenusPage {
         id: splashMenuspage
         width: parent.width
@@ -182,5 +195,16 @@ Page {
         id: controlPage
         width: parent.width
         height: parent.height
+    }
+
+    Timer {
+        interval: 1000
+        running: true
+        repeat: true
+        onTriggered: {
+            extLeft.text = printer.get_temperatures("extruder", true, msSettings.heaterPowerEnabled)
+            extRight.text = printer.get_temperatures("extruder1", true, msSettings.heaterPowerEnabled)
+            bed.text = printer.get_temperatures("heater_bed", true, msSettings.heaterPowerEnabled)
+        }
     }
 }

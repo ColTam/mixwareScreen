@@ -10,6 +10,8 @@ from PyQt5.QtGui import QGuiApplication, QIcon
 
 from MixwareScreenConfig import MixwareScreenConfig
 from MixwareScreenLogger import MixwareScreenLogger
+from moonraker import Moonraker
+from printer import Printer
 
 
 class Translation(QtCore.QObject):
@@ -62,12 +64,17 @@ if __name__ == '__main__':
     ts.languageChanged.connect(QQmlApplicationEngine().retranslate)
 
     engine = QQmlApplicationEngine()
+    printer = Printer()
     engine.rootContext().setContextProperty("translator", ts)
     engine.rootContext().setContextProperty("screenConfig", ms_config)
     engine.rootContext().setContextProperty("screenLogger", ms_logger)
     engine.rootContext().setContextProperty("appDir", setpath)
     engine.rootContext().setContextProperty("logging", logging)
+    engine.rootContext().setContextProperty("printer", printer)
     engine.quit.connect(app.quit)
     engine.load(setpath + "ui/main.qml")
+
+#    root = engine.rootObjects()
+#    printer.update_state.connect(root.update_screen)
 
     sys.exit(app.exec())

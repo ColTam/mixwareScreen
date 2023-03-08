@@ -8,11 +8,11 @@ Window {
     id: window
     visible: true
     visibility: Window.FullScreen
-//    flags: Qt.FramelessWindowHint
+    flags: Qt.FramelessWindowHint
     width: 400
-    height: 960
-    minimumWidth: 240
-    minimumHeight: 320
+    height: 1280
+//    minimumWidth: 240
+//    minimumHeight: 320
     title: qsTr("Mixware Screen")
 
     Settings {
@@ -20,8 +20,10 @@ Window {
         fileName: appDir + "MixwareScreen.conf"
 
         category: "window"
-        property alias x: window.x
-        property alias y: window.y
+//        property alias x: window.x
+//        property alias y: window.y
+//        property alias width: window.width
+//        property alias height: window.height
     }
 
     ScreenConfig {
@@ -38,34 +40,11 @@ Window {
         height: parent.height
         color: "#fff8dc"
 
-        BaseButton{
-            id: toggleButton
-
-            text: "Toggle"
-            backColor : "#FFFFFF"
-
-            width: parent.width
-            height: 48
-
-            anchors.bottom: parent.bottom
-            anchors.right: parent.right
-
-            onClicked: {
-                if (mainStack.depth > 1)
-                    mainStack.pop(null, StackView.Immediate)
-                else {
-                    printPage.visible = true;
-                    printPage.stack = mainStack;
-                    mainStack.push(printPage, StackView.Immediate)
-                }
-            }
-        }
-
         StackView {
             id: mainStack
             width: parent.width
             anchors.top: parent.top
-            anchors.bottom: toggleButton.top
+            anchors.bottom: parent.bottom
 
 //            initialItem: printPage
             initialItem: splashPage
@@ -114,5 +93,25 @@ Window {
     function show_notify(str) {
         notify.inf = str
         notify.visible = true
+    }
+
+    function update_screen(_state) {
+        if (_state === "notify_klippy_ready" && mainStack.depth == 1) {
+            printPage.visible = true;
+            printPage.stack = mainStack;
+            mainStack.push(printPage, StackView.Immediate)
+        }
+        else {
+            if (mainStack.depth > 1) {
+                mainStack.pop(null, StackView.Immediate)
+            }
+        }
+    }
+    Connections{
+        target: printer
+        function onUpdate_state(_state) { update_screen(_state) }
+    }
+    Binding{
+
     }
 }

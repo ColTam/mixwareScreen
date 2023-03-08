@@ -6,22 +6,21 @@ Rectangle {
 
     property string settingsItemText: "SettingsItem"
 
-    x: 5
-    radius: msSettings.radius
     color: msStyle.background
     width: 240
     height: 48
 
     BaseLabel {
-        x: 10
+        x: msSettings.spacing * 3
         height: parent.height
         text: settingsItemText
         verticalAlignment: Text.AlignVCenter
     }
 
     Rectangle {
+        x: msSettings.spacing
         height: 1
-        width: parent.width
+        width: parent.width - msSettings.spacing * 2
         color: Qt.darker(parent.color)
 
         anchors.bottom: parent.bottom
